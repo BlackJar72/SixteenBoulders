@@ -1,6 +1,6 @@
 package jaredbgreat.boulders;
 
-import jaredbgreat.boulders.states.AppStatePlayGame;
+import jaredbgreat.boulders.states.AppStateSinglePlayer;
 import com.jme3.app.SimpleApplication;
 import com.jme3.renderer.RenderManager;
 import com.jme3.system.AppSettings;
@@ -10,7 +10,7 @@ import jaredbgreat.boulders.states.AppStateStartScreen;
  * @author Jared Blackburn
  */
 public class Main extends SimpleApplication {
-    private static AppStatePlayGame play;
+    private static AppStateSinglePlayer play;
     private static AppStateStartScreen start;
 
     public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-        play  = new AppStatePlayGame();
+        play  = new AppStateSinglePlayer();
         start = new AppStateStartScreen();
         stateManager.attach(start);
     }
@@ -43,7 +43,7 @@ public class Main extends SimpleApplication {
         if(stateManager.hasState(play)) {
             stateManager.detach(play);            
         }
-        stateManager.attach(play = new AppStatePlayGame());
+        stateManager.attach(play = new AppStateSinglePlayer());
     }
     
     

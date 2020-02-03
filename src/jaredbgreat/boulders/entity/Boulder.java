@@ -14,7 +14,7 @@ import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Sphere;
-import jaredbgreat.boulders.states.AppStatePlayGame;
+import jaredbgreat.boulders.states.AppStateSinglePlayer;
 import jaredbgreat.boulders.entity.controls.BoulderControl;
 import jaredbgreat.boulders.util.MaterialMaker;
 
@@ -36,7 +36,7 @@ public class Boulder extends AbstractEntity {
     RigidBodyControl phyControl;
     
     
-    public Boulder(AppStatePlayGame playgame, AssetManager assetman, Vector3f loc, 
+    public Boulder(AppStateSinglePlayer playgame, AssetManager assetman, Vector3f loc, 
                 Node parent, BulletAppState physics) {
         spatial = makeSpatial(assetman, loc);
         phyControl = new RigidBodyControl(50f);

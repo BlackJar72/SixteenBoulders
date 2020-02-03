@@ -8,7 +8,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
-import jaredbgreat.boulders.states.AppStatePlayGame;
+import jaredbgreat.boulders.states.AppStateSinglePlayer;
 
 /**
  *
@@ -30,7 +30,7 @@ public class PlayerControl extends AbstractEntityControl {
     private final Quaternion camq;
 
     
-    public PlayerControl(AppStatePlayGame appState, BetterCharacterControl bcc) {
+    public PlayerControl(AppStateSinglePlayer appState, BetterCharacterControl bcc) {
         super(appState);
         speed = 12f;
         hRotSpeed = 100f;

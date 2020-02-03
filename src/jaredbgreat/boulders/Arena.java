@@ -25,7 +25,6 @@ public class Arena {
     private final TextureKey fenceTexKey = new TextureKey("Textures/fence.png");
     private final TextureKey grassTexKey = new TextureKey("Textures/grass.png");
     private final Vector3f gravity = new Vector3f(0f, -9.8f, 0f);
-    // FIXME/TODO: Stand-in, will be more complex later.
     private final Node penNode;
     private RigidBodyControl penphy;
     private final Geometry ground, nwall, swall, ewall, wwall;
@@ -93,9 +92,6 @@ public class Arena {
     
     
     public Node initPhysics(BulletAppState physics) {
-        //penphy = new RigidBodyControl(0f);
-        //penNode.addControl(penphy);
-        //physics.getPhysicsSpace().add(penNode);
         
         gphy = new RigidBodyControl(0f);
         nphy = new RigidBodyControl(0f);
@@ -114,11 +110,6 @@ public class Arena {
         physics.getPhysicsSpace().add(sphy);
         physics.getPhysicsSpace().add(ephy);
         physics.getPhysicsSpace().add(wphy);
-        
-//        nphy.setRestitution(1.0f);
-//        sphy.setRestitution(1.0f);
-//        ephy.setRestitution(1.0f);
-//        wphy.setRestitution(1.0f);
         
         physics.getPhysicsSpace().setGravity(gravity);
         

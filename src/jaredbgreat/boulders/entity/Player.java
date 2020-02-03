@@ -12,7 +12,7 @@ import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
-import jaredbgreat.boulders.states.AppStatePlayGame;
+import jaredbgreat.boulders.states.AppStateSinglePlayer;
 import jaredbgreat.boulders.entity.controls.PlayerControl;
 import jaredbgreat.boulders.util.MaterialMaker;
 
@@ -27,7 +27,7 @@ public class Player extends AbstractEntity {
     private static int score;
     boolean alive;
     
-    public Player(AppStatePlayGame playgame, Node parent, BulletAppState physics) {     
+    public Player(AppStateSinglePlayer playgame, Node parent, BulletAppState physics) {     
         spatial = new Node();
         spatial.setLocalTranslation(0f, 0f, -2f);
         visual = makeGeom(playgame.getApplication().getAssetManager(), new Vector3f().set(0, -0.5f, 0f));

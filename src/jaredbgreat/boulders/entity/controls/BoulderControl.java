@@ -9,7 +9,7 @@ import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
-import jaredbgreat.boulders.states.AppStatePlayGame;
+import jaredbgreat.boulders.states.AppStateSinglePlayer;
 import jaredbgreat.boulders.entity.Boulder;
 
 /**
@@ -42,7 +42,7 @@ public class BoulderControl extends AbstractEntityControl {
     AudioNode[] sounds;
 
     
-    public BoulderControl(AppStatePlayGame appState, RigidBodyControl phy, Boulder caller) {
+    public BoulderControl(AppStateSinglePlayer appState, RigidBodyControl phy, Boulder caller) {
         super(appState);
         owner = caller;
         physics = phy;

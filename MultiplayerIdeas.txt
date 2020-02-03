@@ -1,0 +1,33 @@
+The idea for multiplayer: Competition to knock your balls out first.
+
+Each of two players (or possibly also two of two) choose to be either 
+the white team or the black team.  Half the ball are black and half 
+are white; each team tries knock there own balls (color match) out 
+white avoiding knocking the other teams balls out.  They may also 
+try to prevent their apponent from knocking out balls.  First to 
+knock out all balls of their own color wins the game.
+
+Due to the probable shortness of individual games players would play 
+multi-game matches, similar to tennis.  After a number of connected 
+games (probably 5, 6, or 7) a player who is two games ahead wins; 
+if neither is sufficiently ahead of the other play continues until 
+one player is ahead by two games.  The first to be ahead by two 
+games at or after wins.  Since this is likely to typically be 
+played casually the two-ahead rule may be a toggleable and a single 
+game mode may also exist.
+
+Some rules and setup would differ for multiplayer.  Rather than spawning
+in the center of the arena each player would spawn on opposite sides facing 
+each other.  A player avatar of some kind would be needed, allowing players 
+to see each other.  The balls would not be scattered randomly as in the 
+single player, but would be placed in a circle, a fixed distance from the 
+center and 8/pi radian appart and alternating between the two colors; this 
+is to avoid one player of the other having an advantage due purely to 
+luck.  Falling into the void would not be game over, but respawn after 
+five seconds so that pushing an apponent into the void will not be a way 
+to cheese a victory; instead it would remain a valid tactic for agressive 
+players with the consequences to the player knock off being small -- a 
+few seconds rather than an instant loss.
+
+(The idea of a multiplayer play ground for children and non-compatetive players 
+could also exist, though I don't think it would be any good.)

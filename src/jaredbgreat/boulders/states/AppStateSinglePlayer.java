@@ -25,7 +25,7 @@ import java.util.Random;
  *
  * @author Jared Blackburn
  */
-public class AppStatePlayGame extends BaseAppState {
+public class AppStateSinglePlayer extends BaseAppState {
     static final int NUM_SHEEP = 16;
     AssetManager assetman;
     BaseAppState controls;
@@ -51,7 +51,7 @@ public class AppStatePlayGame extends BaseAppState {
     long endtime;
     
     
-    public AppStatePlayGame() {
+    public AppStateSinglePlayer() {
         super();
         sheep = new Boulder[NUM_SHEEP];
         random = new Random();
