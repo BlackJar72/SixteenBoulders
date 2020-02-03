@@ -14,6 +14,12 @@
 
 # Package Files #
 *.jar
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.so
+*.dll
 *.exe
 *.sh
 
