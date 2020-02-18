@@ -17,6 +17,7 @@ import jaredbgreat.boulders.entity.controls.PlayerControl;
 import jaredbgreat.boulders.util.MaterialMaker;
 
 /**
+ * 
  *
  * @author Jared Blackburn
  */
@@ -31,10 +32,10 @@ public class Player extends AbstractEntity {
         spatial = new Node();
         spatial.setLocalTranslation(0f, 0f, -2f);
         visual = makeGeom(playgame.getApplication().getAssetManager(), new Vector3f().set(0, -0.5f, 0f));
-        control = new BetterCharacterControl(1.25f, 4.0f, 150f);
+        control = new BetterCharacterControl(0.5f, 2.0f, 150f);
         spatial.addControl(control);
         physics.getPhysicsSpace().add(control);
-        control.setJumpForce(new Vector3f(0f, 1250f, 0f));
+        control.setJumpForce(new Vector3f(0f, 1500f, 0f));
         control.setGravity(new Vector3f(0f, -9.8f, 0f));  
         player = new PlayerControl(playgame, control); 
         spatial.addControl(player);
@@ -97,8 +98,6 @@ public class Player extends AbstractEntity {
     
     
     public void die() {
-        //spatial.removeControl(control);
-        //spatial.removeControl(player);
         Node node = (Node)spatial;
         if(node.hasChild(visual)) {
             node.detachChild(visual);

@@ -33,7 +33,7 @@ public class AppStateSinglePlayer extends BaseAppState {
     Node phynode;
     Random random;
     Main app;
-    Boulder[] sheep;
+    Boulder[] boulder;
     Player player;
     Arena playfield;
     AmbientLight ambLight;
@@ -53,7 +53,7 @@ public class AppStateSinglePlayer extends BaseAppState {
     
     public AppStateSinglePlayer() {
         super();
-        sheep = new Boulder[NUM_SHEEP];
+        boulder = new Boulder[NUM_SHEEP];
         random = new Random();
     }
     
@@ -72,8 +72,8 @@ public class AppStateSinglePlayer extends BaseAppState {
         gameover = false;
         playfield = new Arena(assetman, app.getRootNode());
         phynode = playfield.initPhysics(physics);
-        for(int i = 0; i < sheep.length; i++) {
-            sheep[i] = new Boulder(this, assetman, makeRandomLocation(20f), 
+        for(int i = 0; i < boulder.length; i++) {
+            boulder[i] = new Boulder(this, assetman, makeRandomLocation(20f), 
                     phynode, physics);
         } 
         Vector3f lightvec = new Vector3f();

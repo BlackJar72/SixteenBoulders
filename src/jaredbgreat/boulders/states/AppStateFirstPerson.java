@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jaredbgreat.boulders.states;
 
 import com.jme3.app.Application;
@@ -15,6 +10,7 @@ import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseAxisTrigger;
 import jaredbgreat.boulders.ControlConstants;
+import static jaredbgreat.boulders.ControlConstants.DUCK;
 import static jaredbgreat.boulders.ControlConstants.GO_BACKWARD;
 import static jaredbgreat.boulders.ControlConstants.GO_FORWARD;
 import static jaredbgreat.boulders.ControlConstants.GO_LEFT;
@@ -22,6 +18,7 @@ import static jaredbgreat.boulders.ControlConstants.GO_RIGHT;
 import static jaredbgreat.boulders.ControlConstants.JUMP;
 import static jaredbgreat.boulders.ControlConstants.LOOK_DOWN;
 import static jaredbgreat.boulders.ControlConstants.LOOK_UP;
+import static jaredbgreat.boulders.ControlConstants.RUN;
 import static jaredbgreat.boulders.ControlConstants.TO_MENUS;
 import static jaredbgreat.boulders.ControlConstants.TURN_LEFT;
 import static jaredbgreat.boulders.ControlConstants.TURN_RIGHT;
@@ -53,6 +50,9 @@ public class AppStateFirstPerson extends BaseAppState implements ActionListener,
         app.setDisplayStatView(false);
         app.setDisplayFps(false);
         setControls(app.getInputManager());
+        float ar = (float)app.getContext().getSettings().getWidth() 
+                        / (float)app.getContext().getSettings().getHeight();
+        app.getCamera().setFrustumPerspective(37.5f * ar, ar, 0.25f, 1000f);
         player.setFirstPerson();
     }
     
@@ -94,7 +94,9 @@ public class AppStateFirstPerson extends BaseAppState implements ActionListener,
         inputMan.addMapping(LOOK_DOWN, new MouseAxisTrigger(MouseInput.AXIS_Y, true),
                 new KeyTrigger(KeyInput.KEY_DOWN));
         
-        inputMan.addMapping(JUMP, new KeyTrigger(KeyInput.KEY_SPACE));
+        inputMan.addMapping(JUMP, new KeyTrigger(KeyInput.KEY_SPACE)); 
+        inputMan.addMapping(DUCK, new KeyTrigger(KeyInput.KEY_LSHIFT));
+        inputMan.addMapping(RUN, new KeyTrigger(KeyInput.KEY_LCONTROL));
         
         inputMan.addMapping(TO_MENUS, new KeyTrigger(KeyInput.KEY_ESCAPE));
         
@@ -122,26 +124,28 @@ public class AppStateFirstPerson extends BaseAppState implements ActionListener,
     
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
-        if(name == ControlConstants.GO_FORWARD) {
-            control.setMoveForward(isPressed);
-        } else if(name == ControlConstants.GO_BACKWARD) {
-            control.setMoveBackward(isPressed);
-        } else if(name == ControlConstants.GO_RIGHT) {
-            control.setMoveRight(isPressed);
-        } else if(name == ControlConstants.GO_LEFT) {
-            control.setMoveLeft(isPressed);
-        } else if(name == ControlConstants.JUMP) {
+        if(name == ControlConstants.JUMP) {
             control.jump();
-        } else if(name == ControlConstants.JUMP) {
-            control.jump();
-        }  else if(name == ControlConstants.TO_MENUS) {
+        } else if(name == ControlConstants.DUCK) {
+            control.setCrouch(isPressed);
+        } else if(name == ControlConstants.RUN) {
+            control.setSprint(isPressed);
+        } else if(name == ControlConstants.TO_MENUS) {
             app.endGame();
         }
     }
 
     @Override
-    public void onAnalog(String name, float value, float tpf) {       
-        if(name == ControlConstants.TURN_RIGHT) {
+    public void onAnalog(String name, float value, float tpf) {  
+        if(name == ControlConstants.GO_FORWARD) {
+            control.setMoveForward(tpf * value);
+        } else if(name == ControlConstants.GO_BACKWARD) {
+            control.setMoveBackward(tpf * value);
+        } else if(name == ControlConstants.GO_RIGHT) {
+            control.setMoveRight(tpf * value);
+        } else if(name == ControlConstants.GO_LEFT) {
+            control.setMoveLeft(tpf * value);
+        } else if(name == ControlConstants.TURN_RIGHT) {
             control.setTurnRght(tpf * value);
         } else if(name == ControlConstants.TURN_LEFT) {
             control.setTurnLeft(tpf * value);

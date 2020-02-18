@@ -19,31 +19,37 @@ public class PlayerControl extends AbstractEntityControl {
     private final Vector3f movement;
     private final Vector3f heading;
     private float speed;
+    private float height;
     private float hRotSpeed;
     private float vRotSpeed;
-    private boolean w, a, s, d, r, l;
+    private float wAxis;
+    private float dAxis;
     private float relativeForward;
     private float relativeBackward;
     private boolean firstPerson;
     private float spatialAngle;
     private float camAngle;
+    private float camHeight;
+    private float sprint;
     private final Quaternion camq;
 
     
     public PlayerControl(AppStateSinglePlayer appState, BetterCharacterControl bcc) {
         super(appState);
         speed = 12f;
+        sprint = 1.0f;
         hRotSpeed = 100f;
         vRotSpeed = 100f;
         movement = new Vector3f();
         heading  = new Vector3f();
-        w = a = s = d = r = l = false;
         relativeForward = -1f;
         relativeBackward = 1f;
         spatialAngle = 0;
         camAngle = 0;
+        camHeight = height = 1.0f;
         camq = new Quaternion();
         physics = bcc;
+        physics.setDuckedFactor(0.65f);
     }
     
 
@@ -51,21 +57,10 @@ public class PlayerControl extends AbstractEntityControl {
     protected void controlUpdate(float tpf) {
         SimpleApplication app = (SimpleApplication)game.getApplication();
         movement.set(0, 0, 0);
-        if(w) {
-            movement.addLocal(0, 0, relativeForward);
-        }
-        if(s) {
-            movement.addLocal(0, 0, relativeBackward);
-        }
-        if(a) {
-            movement.addLocal(relativeForward, 0, 0);
-        }
-        if(d) {
-            movement.addLocal(relativeBackward, 0, 0);
-        }
+            movement.addLocal(dAxis, 0, wAxis);
         if(movement.lengthSquared() > 0) {
             Quaternion q = spatial.getLocalRotation();
-            movement.set(q.mult(movement.normalizeLocal().multLocal(speed)));
+            movement.set(q.mult(movement.normalizeLocal().multLocal(speed * sprint)));
         }
         physics.setWalkDirection(movement);
         heading.set(Vector3f.UNIT_Z).negate();
@@ -74,9 +69,10 @@ public class PlayerControl extends AbstractEntityControl {
         if(firstPerson) {
             Camera cam = app.getCamera();                  
             camq.fromAngleNormalAxis(camAngle, Vector3f.UNIT_X);
-            cam.setLocation(spatial.getWorldTranslation().add(0, 1.0f, 0));
+            cam.setLocation(spatial.getWorldTranslation().add(0, camHeight, 0));
             cam.setRotation((spatial.getWorldRotation().mult(camq)));
         }
+        wAxis = dAxis = 0f;
     }
 
     
@@ -84,23 +80,23 @@ public class PlayerControl extends AbstractEntityControl {
     protected void controlRender(RenderManager rm, ViewPort vp) {}
     
     
-    public void setMoveForward(boolean going) {
-        w = going;
+    public void setMoveForward(float amount) {
+        wAxis += amount;
     }
     
     
-    public void setMoveBackward(boolean going) {
-        s = going;
+    public void setMoveBackward(float amount) {
+        wAxis -= amount;
     }
     
     
-    public void setMoveLeft(boolean going) {
-        a = going;
+    public void setMoveLeft(float amount) { 
+        dAxis += amount;
     }
     
     
-    public void setMoveRight(boolean going) {
-        d = going;
+    public void setMoveRight(float amount) {
+        dAxis -= amount;
     }
     
     
@@ -132,6 +128,25 @@ public class PlayerControl extends AbstractEntityControl {
     
     public void jump() {
         physics.jump();
+    }
+    
+    
+    public void setCrouch(boolean on) {
+        physics.setDucked(on);
+        if(on) {
+            camHeight = height * 0.6f;
+        } else {
+            camHeight = height;
+        }
+    }
+    
+    
+    public void setSprint(boolean on) {
+        if(on) {
+            sprint = 1.5f;
+        } else {
+            sprint = 1.0f;
+        }
     }
     
     

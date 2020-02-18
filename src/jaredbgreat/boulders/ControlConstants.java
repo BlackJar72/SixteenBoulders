@@ -11,7 +11,8 @@ package jaredbgreat.boulders;
  */
 public class ControlConstants {   
     public static final String JUMP = "playerJump";
-    public static final String DUCK = "playerDuck";    
+    public static final String DUCK = "playerDuck";  
+    public static final String RUN = "playerRun";    
     public static final String TURN_RIGHT = "playerTurnRight";
     public static final String TURN_LEFT  = "playerTurnLeft";    
     public static final String LOOK_UP    = "playerLookUp";
@@ -31,7 +32,7 @@ public class ControlConstants {
     public static String[] MAPPINGS = new String[]{
         TURN_LEFT, TURN_RIGHT, LOOK_UP, LOOK_DOWN,
         GO_LEFT, GO_RIGHT, GO_FORWARD, GO_BACKWARD,
-        JUMP, TO_MENUS
+        JUMP, DUCK, RUN, TO_MENUS
     };
     
 }
