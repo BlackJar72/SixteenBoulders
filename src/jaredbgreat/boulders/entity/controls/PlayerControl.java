@@ -57,7 +57,7 @@ public class PlayerControl extends AbstractEntityControl {
     protected void controlUpdate(float tpf) {
         SimpleApplication app = (SimpleApplication)game.getApplication();
         movement.set(0, 0, 0);
-            movement.addLocal(dAxis, 0, wAxis);
+        movement.addLocal(dAxis, 0, wAxis);
         if(movement.lengthSquared() > 0) {
             Quaternion q = spatial.getLocalRotation();
             movement.set(q.mult(movement.normalizeLocal().multLocal(speed * sprint)));

@@ -5,12 +5,17 @@ import com.jme3.asset.TextureKey;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.material.Material;
+import com.jme3.math.FastMath;
+import com.jme3.math.Matrix3f;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import jaredbgreat.boulders.util.MaterialMaker;
+import jaredbgreat.boulders.util.ModelFetcher;
 
 /**
  * A representation of the physical field the game takes place in, 
@@ -114,6 +119,35 @@ public class Arena {
         physics.getPhysicsSpace().setGravity(gravity);
         
         return getNode();
+    }
+    
+    
+    public void addRamps(AssetManager assetman, BulletAppState physics) {
+        Spatial ramp1 = ModelFetcher
+                .fetchStaticModel(assetman, "Models/WedgeRamp/WedgeRamp.j3o", physics);
+        ramp1.getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-15f, 0f, -1.5f));
+        penNode.attachChild(ramp1);
+                
+        Spatial ramp2 = ModelFetcher
+                .fetchStaticModel(assetman, "Models/WedgeRamp/WedgeRamp.j3o", physics);
+        RigidBodyControl r2ph = ramp2.getControl(RigidBodyControl.class);
+        r2ph.setPhysicsLocation(new Vector3f(15f, 0f, -1.5f));
+        r2ph.setPhysicsRotation(new Quaternion().fromAngles(0, FastMath.PI, 0));
+        penNode.attachChild(ramp2);
+                
+        Spatial ramp3 = ModelFetcher
+                .fetchStaticModel(assetman, "Models/WedgeRamp/WedgeRamp.j3o", physics);
+        RigidBodyControl r3ph = ramp3.getControl(RigidBodyControl.class);
+        r3ph.setPhysicsLocation(new Vector3f(0f, 0f, 15f));
+        r3ph.setPhysicsRotation(new Quaternion().fromAngles(0, FastMath.HALF_PI, 0));
+        penNode.attachChild(ramp3);
+                
+        Spatial ramp4 = ModelFetcher
+                .fetchStaticModel(assetman, "Models/WedgeRamp/WedgeRamp.j3o", physics);
+        RigidBodyControl r4ph = ramp4.getControl(RigidBodyControl.class);
+        r4ph.setPhysicsLocation(new Vector3f(0f, 0f, -15f));
+        r4ph.setPhysicsRotation(new Quaternion().fromAngles(0, FastMath.PI + FastMath.HALF_PI, 0));
+        penNode.attachChild(ramp4);
     }
     
     

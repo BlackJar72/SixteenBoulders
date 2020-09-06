@@ -72,6 +72,7 @@ public class AppStateSinglePlayer extends BaseAppState {
         gameover = false;
         playfield = new Arena(assetman, app.getRootNode());
         phynode = playfield.initPhysics(physics);
+        playfield.addRamps(assetman, physics);
         for(int i = 0; i < boulder.length; i++) {
             boulder[i] = new Boulder(this, assetman, makeRandomLocation(20f), 
                     phynode, physics);
