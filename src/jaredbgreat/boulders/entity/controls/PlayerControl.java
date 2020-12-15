@@ -38,8 +38,8 @@ public class PlayerControl extends AbstractEntityControl {
         super(appState);
         speed = 12f;
         sprint = 1.0f;
-        hRotSpeed = 100f;
-        vRotSpeed = 100f;
+        hRotSpeed = 10f;
+        vRotSpeed = 10f;
         movement = new Vector3f();
         heading  = new Vector3f();
         relativeForward = -1f;

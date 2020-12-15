@@ -148,6 +148,22 @@ public class Arena {
         r4ph.setPhysicsLocation(new Vector3f(0f, 0f, -15f));
         r4ph.setPhysicsRotation(new Quaternion().fromAngles(0, FastMath.PI + FastMath.HALF_PI, 0));
         penNode.attachChild(ramp4);
+        
+                
+//        Spatial ramp5a = ModelFetcher
+//                .fetchStaticModel(assetman, "Models/WedgeRamp/TwistedRamp2.j3o", physics);
+//        RigidBodyControl r5aph = ramp5a.getControl(RigidBodyControl.class);
+//        r5aph.setPhysicsLocation(new Vector3f(30f, 0f, -3f));
+//        r5aph.setPhysicsRotation(new Quaternion().fromAngles(0, FastMath.HALF_PI, 0));
+//        penNode.attachChild(ramp5a);
+                
+//        Spatial ramp5b = ModelFetcher
+//                .fetchStaticModel(assetman, "Models/WedgeRamp/TwistedRamp2.j3o", physics);
+//        RigidBodyControl r5bph = ramp5b.getControl(RigidBodyControl.class);
+//        r5bph.setPhysicsLocation(new Vector3f(-30f, 0f, 3f));
+//        r5bph.setPhysicsRotation(new Quaternion().fromAngles(0, FastMath.HALF_PI, 0));
+//        penNode.attachChild(ramp5b);
+        
     }
     
     

@@ -17,6 +17,7 @@ public class Main extends SimpleApplication {
         AppSettings settings = new AppSettings(true);
         settings.setTitle("Sixteen Boulders");
         settings.setSettingsDialogImage("Interface/16Boulders.png");
+        settings.setVSync(true);
         Main app = new Main();
         app.setSettings(settings);
         app.start();

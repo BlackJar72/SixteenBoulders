@@ -9,6 +9,7 @@ import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseAxisTrigger;
+import com.jme3.math.FastMath;
 import jaredbgreat.boulders.ControlConstants;
 import static jaredbgreat.boulders.ControlConstants.DUCK;
 import static jaredbgreat.boulders.ControlConstants.GO_BACKWARD;
@@ -137,6 +138,7 @@ public class AppStateFirstPerson extends BaseAppState implements ActionListener,
 
     @Override
     public void onAnalog(String name, float value, float tpf) {  
+        //System.out.println(tpf);
         if(name == ControlConstants.GO_FORWARD) {
             control.setMoveForward(tpf * value);
         } else if(name == ControlConstants.GO_BACKWARD) {
