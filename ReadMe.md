@@ -4,7 +4,7 @@ A game about knocking boulders out of an arena, made using JMonkeyEngine 3.2.
 
 Copyright (c) Jared Blackburn 2019
 
-This is release under the GNU General Public License version 3
+This is release under the GNU General Public License version 3.0
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
